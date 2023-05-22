@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace maui_mvvm_lol;
+namespace LOLApp;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

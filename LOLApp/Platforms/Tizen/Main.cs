@@ -2,7 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace maui_mvvm_lol;
+namespace LOLApp;
 
 class Program : MauiApplication
 {

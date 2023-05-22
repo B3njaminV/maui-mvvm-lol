@@ -1,4 +1,4 @@
-﻿namespace maui_mvvm_lol;
+﻿namespace LOLApp;
 
 public partial class App : Application
 {

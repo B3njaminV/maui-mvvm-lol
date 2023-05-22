@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace maui_mvvm_lol;
+namespace LOLApp;
 
 [Application]
 public class MainApplication : MauiApplication

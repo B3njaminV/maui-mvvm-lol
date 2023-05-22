@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace maui_mvvm_lol;
+namespace LOLApp;
 
 public class Program
 {

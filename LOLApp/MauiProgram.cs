@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace maui_mvvm_lol;
+namespace LOLApp;
 
 public static class MauiProgram
 {

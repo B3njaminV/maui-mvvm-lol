@@ -3,7 +3,7 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace maui_mvvm_lol.WinUI;
+namespace LOLApp.WinUI;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default Application class.

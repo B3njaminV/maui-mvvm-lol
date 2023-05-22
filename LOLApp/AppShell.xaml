@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="maui_mvvm_lol.AppShell"
+    x:Class="LOLApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:maui_mvvm_lol"
+    xmlns:local="clr-namespace:LOLApp"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
