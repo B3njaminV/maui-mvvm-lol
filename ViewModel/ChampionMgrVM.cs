@@ -8,27 +8,38 @@ namespace ViewModel
 {
 	public class ChampionMgrVM : INotifyPropertyChanged
 	{
-		public IReadOnlyCollection<ChampionVM> Champions { get; private set; }
-		private ObservableCollection<ChampionVM> champions = new ObservableCollection<ChampionVM>();
+		public ReadOnlyObservableCollection<ChampionVM> Champions { get; private set; }
+		private ObservableCollection<ChampionVM> _champions { get; set; } = new ObservableCollection<ChampionVM>();
 
-		private IDataManager DataManager { get; set; }
+		public IDataManager DataManager
+		{
+			get => _dataManager;
+			set
+			{
+				if (_dataManager == value) return;
+				_dataManager = value;
+				OnPropertyChanged();
+				LoadChampions();
+			}
+		}
+		private IDataManager _dataManager;
 
 		public ChampionMgrVM(IDataManager dataManager)
 		{
 			DataManager = dataManager;
-			Champions = new ReadOnlyCollection<ChampionVM>(champions);
+			Champions = new ReadOnlyObservableCollection<ChampionVM>(_champions);
 			PropertyChanged += ChampionMgrVM_PropertyChanged;
 		}
 
-        private async void ChampionMgrVM_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == nameof(Index))
+		private async void ChampionMgrVM_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(Index))
 			{
 				await LoadChampions();
 			}
-        }
+		}
 
-        public int Index
+		public int Index
 		{
 			get => index;
 			set
@@ -55,12 +66,13 @@ namespace ViewModel
 
         private async Task LoadChampions()
         {
-			champions.Clear();
-			var modelChampions = await DataManager.ChampionsMgr.GetItems(Index, Count);
-            foreach (var n in modelChampions)
-            {
-				champions.Add(new ChampionVM(n));
+			_champions.Clear();
+			int nbItems = await DataManager.ChampionsMgr.GetNbItems();
+			IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(0, nbItems);
 
+			foreach (var champion in modelChampions)
+            {
+				_champions.Add(new ChampionVM(champion));
 			}
         }
 

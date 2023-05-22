@@ -54,6 +54,9 @@
 
 	<ItemGroup>
 	  <None Remove="Pages\" />
+	  <None Remove="Resources\Images\lol.png" />
+	  <None Remove="Resources\Images\epee.png" />
+	  <None Remove="Resources\.DS_Store" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Pages\" />
@@ -68,5 +71,10 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\..\Documents\Mes Applications\maui-mvvm-lol\ViewModel\ViewModel.csproj" />
+	  <ProjectReference Include="..\Model\Model.csproj" />
+	  <ProjectReference Include="..\StubLib\StubLib.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\.DS_Store" />
 	</ItemGroup>
 </Project>

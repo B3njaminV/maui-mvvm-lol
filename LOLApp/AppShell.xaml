@@ -8,34 +8,16 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
+       
         <ShellContent
             Title="Home"
-            ContentTemplate="{DataTemplate pages:UnknowPage}"
-            Route="Accueil" />
-
-        <ShellContent
-            x:Name="ListenPanel"
-            Icon="icon_listen"
-            Title="Ecouter"
-            ContentTemplate="{DataTemplate pages:UnknowPage}"
+            ContentTemplate="{DataTemplate pages:AccueilPages}"
             Route="UnknowPage" />
 
-        <ShellContent
-            x:Name="ListenPanel"
-            Icon="icon_listen"
-            Title="Ecouter"
-            ContentTemplate="{DataTemplate pages:UnknowPage}"
+         <ShellContent
+            Title="Champions"
+            ContentTemplate="{DataTemplate pages:ChampionPages}"
             Route="UnknowPage" />
-
-        <ShellContent
-            Title="Ecouter"
-            ContentTemplate="{DataTemplate pages:UnknowPage}"
-            Route="Accueil" />
-
-        <ShellContent
-            Title="Ecouter"
-            ContentTemplate="{DataTemplate pages:UnknowPage}"
-            Route="Accueil" />
     </TabBar>
 
 </Shell>

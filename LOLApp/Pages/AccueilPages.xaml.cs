@@ -1,8 +1,8 @@
 ﻿namespace LOLApp.Pages;
 
-public partial class Accueil : ContentPage
+public partial class AccueilPages : ContentPage
 {
-	public Accueil()
+	public AccueilPages()
 	{
 		InitializeComponent();
 	}

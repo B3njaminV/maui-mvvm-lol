@@ -2,11 +2,11 @@
 
 namespace LOLApp.Pages;
 
-public partial class Champions : ContentPage
+public partial class ChampionPages : ContentPage
 {
 	public ChampionMgrVM ChampionMgr { get; private set; }
 
-	public Champions(ChampionMgrVM cmvm)
+	public ChampionPages(ChampionMgrVM cmvm)
 	{
 		ChampionMgr = cmvm;
 		InitializeComponent();
