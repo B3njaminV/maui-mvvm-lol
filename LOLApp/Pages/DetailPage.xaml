@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LOLApp.Pages.DetailPage"
+             xmlns:converters="clr-namespace:LOLApp.Converters"
+              Title="{Binding Name}">
+    <ContentPage.Resources>
+        <converters:Base64ToImage x:Key="Base64ToImg"/>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Image Source="{Binding Path=Image, Converter={StaticResource Base64ToImg}}"/>
+            <HorizontalStackLayout>
+                <Image Source="{Binding Path=Icon, Converter={StaticResource Base64ToImg}}"
+                       HeightRequest="60"
+                       WidthRequest="60"
+                       Margin="0,10,10,10"/>
+                <Label Text="{Binding Name}" Style="{StaticResource h1}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

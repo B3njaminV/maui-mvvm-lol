@@ -59,14 +59,14 @@
 	  <None Remove="Resources\.DS_Store" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Pages\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <MauiXaml Update="Pages\Accueil.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ChampionPages.xaml">
+	  <MauiXaml Update="Pages\ChampionPage.xaml">
 	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
@@ -76,5 +76,13 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\.DS_Store" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Pages\AccueilPage.xaml.cs">
+	    <DependentUpon>AccueilPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\ChampionPage.xaml.cs">
+	    <DependentUpon>ChampionPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>
