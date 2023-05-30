@@ -6,19 +6,25 @@ namespace ViewModel;
 
 public class ChampionVM : INotifyPropertyChanged
 {
-    public ChampionVM(Champion champion) => Model = champion;
+    public ChampionVM(Champion model)
+    {
+        _model = model;
+    }
 
-    public ChampionVM() => Model = new Champion("Heros", ChampionClass.Assassin);
+    public ChampionVM()
+    {
+        _model = new Champion("Heros", ChampionClass.Assassin);
+    }
 
-    private Champion model;
+    private Champion _model;
     public Champion Model
     {
-        get => model;
+        get => _model;
         set
         {
-            if (model.Equals(value)) return;
-            if (model == null) return;
-            model = value;
+            if (_model.Equals(value)) return;
+            if (_model == null) return;
+            _model = value;
             OnPropertyChanged();
         }
     }
@@ -33,26 +39,28 @@ public class ChampionVM : INotifyPropertyChanged
         get => Model.Icon;
         set
         {
-            if (model == null) return;
-            Model.Icon = value;
+            if (_model.Icon.Equals(value)) return;
+            _model.Icon = value;
             OnPropertyChanged();
         }
     }
 
-    public LargeImage Image
+    public string Image
     {
-        get => Model.Image;
+        get => Model.Image.Base64;
         set
         {
-            if (model == null) return;
-            Model.Image = value;
+            if (_model.Icon.Equals(value)) return;
+            _model.Image.Base64 = value;
             OnPropertyChanged();
         }
     }
+
+    public string Class { get => Model.Class.ToString(); }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

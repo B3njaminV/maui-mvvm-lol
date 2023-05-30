@@ -6,32 +6,32 @@ using Model;
 
 namespace ViewModel
 {
-	public class ChampionMgrVM : INotifyPropertyChanged
+	public class ManagerVM : INotifyPropertyChanged
 	{
 		public ReadOnlyObservableCollection<ChampionVM> Champions { get; private set; }
 		private ObservableCollection<ChampionVM> _champions { get; set; } = new ObservableCollection<ChampionVM>();
 
-		public IDataManager DataManager
-		{
-			get => _dataManager;
-			set
-			{
-				if (_dataManager == value) return;
-				_dataManager = value;
-				OnPropertyChanged();
-				LoadChampions();
-			}
-		}
-		private IDataManager _dataManager;
+        public IDataManager DataManager
+        {
+            get => _dataManager;
+            set
+            {
+                if (_dataManager == value) return;
+                _dataManager = value;
+                OnPropertyChanged();
+                LoadChampions();
+            }
+        }
+        private IDataManager _dataManager;
 
-		public ChampionMgrVM(IDataManager dataManager)
+		public ManagerVM(IDataManager dataManager)
 		{
 			DataManager = dataManager;
 			Champions = new ReadOnlyObservableCollection<ChampionVM>(_champions);
-			PropertyChanged += ChampionMgrVM_PropertyChanged;
+			PropertyChanged += ManagerVM_PropertyChanged;
 		}
 
-		private async void ChampionMgrVM_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+		private async void ManagerVM_PropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(Index))
 			{

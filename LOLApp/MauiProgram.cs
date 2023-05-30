@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using LOLApp.Pages;
+using Microsoft.Extensions.Logging;
 using Model;
 using StubLib;
 using ViewModel;
@@ -18,8 +19,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			})
 			.Services.AddSingleton<IDataManager, StubData>()
-			.AddSingleton<ChampionMgrVM>()
-			.AddSingleton<Pages.ChampionPages>();
+			.AddSingleton<ManagerVM>()
+			.AddSingleton<ChampionPage>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
