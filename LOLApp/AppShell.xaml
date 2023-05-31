@@ -11,11 +11,13 @@
        
         <ShellContent
             Title="Home"
+            Icon="lol"
             ContentTemplate="{DataTemplate pages:AccueilPage}"
             Route="MainPage" />
 
          <ShellContent
             Title="Champions"
+            Icon="epee"
             ContentTemplate="{DataTemplate pages:ChampionPage}"
             Route="MainPage" />
     </TabBar>

@@ -56,6 +56,17 @@ public class ChampionVM : INotifyPropertyChanged
         }
     }
 
+    public string Bio
+    {
+        get => Model.Bio;
+        set
+        {
+            if (_model.Bio.Equals(value)) return;
+            _model.Bio = value;
+            OnPropertyChanged();
+        }
+    }
+
     public string Class { get => Model.Class.ToString(); }
 
     public event PropertyChangedEventHandler? PropertyChanged;
