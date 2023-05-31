@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Model;
 
@@ -6,6 +7,10 @@ namespace ViewModel;
 
 public class ChampionVM : INotifyPropertyChanged
 {
+
+    private Dictionary<string, int> _characteristic;
+    public ObservableCollection<KeyValuePair<string, int>> Characteristic { get; set; }
+
     public ChampionVM(Champion model)
     {
         _model = model;
@@ -14,6 +19,9 @@ public class ChampionVM : INotifyPropertyChanged
     public ChampionVM()
     {
         _model = new Champion("Heros", ChampionClass.Assassin);
+        _characteristic = new Dictionary<string, int>();
+        Characteristic = new ObservableCollection<KeyValuePair<string, int>>();
+        LoadCharacteristic();
     }
 
     private Champion _model;
@@ -74,6 +82,15 @@ public class ChampionVM : INotifyPropertyChanged
     protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private async Task LoadCharacteristic()
+    {
+        _characteristic.Clear();
+        foreach (var item in _model.Characteristics)
+        {
+            Characteristic.Add(item);
+        }
     }
 }
 
