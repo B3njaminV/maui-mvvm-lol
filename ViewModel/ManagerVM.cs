@@ -26,12 +26,17 @@ namespace ViewModel
 
 		public ManagerVM(IDataManager dataManager)
 		{
-			DataManager = dataManager;
+            //PrevPage = new Command(PreviousPageAction);
+            //NextPage = new Command(NextPageAction);
+            DataManager = dataManager;
 			Champions = new ReadOnlyObservableCollection<ChampionVM>(_champions);
 			PropertyChanged += ManagerVM_PropertyChanged;
 		}
 
-		private async void ManagerVM_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        //public ICommand PrevPage { get; }
+//        public ICommand NextPage { get; }
+
+        private async void ManagerVM_PropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(Index))
 			{
@@ -49,13 +54,35 @@ namespace ViewModel
 				OnPropertyChanged();
 			}
 		}
-		private int index;
+		private int index = 0;
 
 		public int Count
 		{
 			get;
 			set;
 		} = 5;
+
+        private async void PreviousPageAction()
+        {
+
+            Console.WriteLine("===> Previous page clicked");
+
+            if (index > 0)
+            {
+                index = index - 1;
+            }
+            _champions.Clear();
+            await LoadChampions();
+        }
+        private async void NextPageAction()
+        {
+
+            Console.WriteLine("===> Next page clicked");
+
+            index = index + 1;
+            _champions.Clear();
+            await LoadChampions();
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -68,9 +95,9 @@ namespace ViewModel
         {
 			_champions.Clear();
 			int nbItems = await DataManager.ChampionsMgr.GetNbItems();
-			IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(0, nbItems);
-
-			foreach (var champion in modelChampions)
+            //IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(0, nbItems);
+            IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(Index, Count);
+            foreach (var champion in modelChampions)
             {
 				_champions.Add(new ChampionVM(champion));
 			}

@@ -9,4 +9,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Documents\Mes Applications\maui-mvvm-lol\Model\Model.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Microsoft.Maui.Controls">
+			<HintPath Condition="'$(OS)' == 'Windows_NT'">C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.android\7.0.86\ref\net7.0-android30.0\Microsoft.Maui.Controls.dll</HintPath>
+			<HintPath Condition="'$(OS)' != 'Windows_NT'">\usr\local\share\dotnet\packs\Microsoft.Maui.Controls.Ref.android\7.0.86\ref\net7.0-android30.0\Microsoft.Maui.Controls.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 </Project>
