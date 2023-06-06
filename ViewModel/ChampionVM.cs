@@ -5,7 +5,7 @@ using Model;
 
 namespace ViewModel;
 
-public class ChampionVM : INotifyPropertyChanged
+public class ChampionVM : PropertyChange
 {
 
     private Dictionary<string, int> _characteristic;
@@ -76,13 +76,6 @@ public class ChampionVM : INotifyPropertyChanged
     }
 
     public string Class { get => Model.Class.ToString(); }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 
     private async Task LoadCharacteristic()
     {

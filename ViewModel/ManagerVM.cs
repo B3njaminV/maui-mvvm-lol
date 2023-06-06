@@ -6,8 +6,8 @@ using Model;
 
 namespace ViewModel
 {
-	public class ManagerVM : INotifyPropertyChanged
-	{
+	public class ManagerVM : PropertyChange
+    {
 		public ReadOnlyObservableCollection<ChampionVM> Champions { get; private set; }
 		private ObservableCollection<ChampionVM> _champions { get; set; } = new ObservableCollection<ChampionVM>();
 
@@ -82,13 +82,6 @@ namespace ViewModel
             index = index + 1;
             _champions.Clear();
             await LoadChampions();
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async Task LoadChampions()
