@@ -7,28 +7,42 @@
     <ContentPage.Resources>
         <converters:Base64ToImage x:Key="Base64ToImg"/>
     </ContentPage.Resources>
-    <CollectionView ItemsSource="{Binding Champions}" SelectionChanged="CollectionView_SelectionChanged" SelectionMode="Single">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid Padding="10"
+
+    <VerticalStackLayout>
+        <CollectionView ItemsSource="{Binding Champions}" SelectionChanged="CollectionView_SelectionChanged" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10"
                           RowDefinitions="*,*"
                           ColumnDefinitions="*,4*">
-                    <Image Grid.RowSpan="2"
+                        <Image Grid.RowSpan="2"
                            Source="{Binding Path=Icon,Converter={StaticResource Base64ToImg}}"
                            Aspect="AspectFill"
                            HeightRequest="60"
                            WidthRequest="60" />
-                    <Label Grid.Column="1"
+                        <Label Grid.Column="1"
                            Text="{Binding Name}"
                            FontAttributes="Bold" 
                            VerticalTextAlignment="Center"/>
-                    <Label Grid.Row="1"
+                        <Label Grid.Row="1"
                            Grid.Column="1"
                            Text="{Binding Class}"
                            FontAttributes="Italic" 
                            VerticalTextAlignment="Center"/>
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <HorizontalStackLayout>
+            <Button Grid.Column="1" Text="&lt;" Command="{Binding PrevPageAction}"
+                    VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Label Grid.Column="1" Text="1" 
+                    VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Button Grid.Column="1" Text="&gt;" Command="{Binding NextPageAction}"
+                    VerticalOptions="Center" HorizontalOptions="Center"/>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+
 </ContentPage>
