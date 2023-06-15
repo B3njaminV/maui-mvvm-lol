@@ -8,8 +8,12 @@ namespace ViewModel;
 public class ChampionVM : PropertyChange
 {
 
-    private Dictionary<string, int> _characteristic;
+    private Dictionary<string, int> _characteristic = new Dictionary<string, int>();
     public ObservableCollection<KeyValuePair<string, int>> Characteristic { get; set; }
+
+    private ObservableCollection<SkillVM> _skills = new ObservableCollection<SkillVM>();
+
+    public ObservableCollection<SkillVM> Skills { get; private set; }
 
     public ChampionVM(Champion model)
     {
@@ -19,9 +23,10 @@ public class ChampionVM : PropertyChange
     public ChampionVM()
     {
         _model = new Champion("Heros", ChampionClass.Assassin);
-        _characteristic = new Dictionary<string, int>();
-        Characteristic = new ObservableCollection<KeyValuePair<string, int>>();
+        Characteristic = new ObservableCollection<KeyValuePair<string, int>>(_characteristic);
+        Skills = new ObservableCollection<SkillVM>(_skills);
         LoadCharacteristic();
+        LoadSkill();
     }
 
     private Champion _model;
@@ -83,6 +88,15 @@ public class ChampionVM : PropertyChange
         foreach (var item in _model.Characteristics)
         {
             Characteristic.Add(item);
+        }
+    }
+
+    private async Task LoadSkill()
+    {
+        _skills.Clear();
+        foreach (var item in Model.Skills)
+        {
+            _skills.Add(new SkillVM(item));
         }
     }
 }

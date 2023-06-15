@@ -9,30 +9,32 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding Champions}" SelectionChanged="CollectionView_SelectionChanged" SelectionMode="Single">
-            <CollectionView.ItemTemplate>
+        <ListView ItemsSource="{Binding Champions}" ItemTapped="ListView_ItemTapped" SelectionMode="Single" RowHeight="80">
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10"
+                    <ViewCell Height="100">
+                        <Grid Padding="10"
                           RowDefinitions="*,*"
                           ColumnDefinitions="*,4*">
-                        <Image Grid.RowSpan="2"
+                            <Image Grid.RowSpan="2"
                            Source="{Binding Path=Icon,Converter={StaticResource Base64ToImg}}"
                            Aspect="AspectFill"
                            HeightRequest="60"
                            WidthRequest="60" />
-                        <Label Grid.Column="1"
+                            <Label Grid.Column="1"
                            Text="{Binding Name}"
                            FontAttributes="Bold" 
                            VerticalTextAlignment="Center"/>
-                        <Label Grid.Row="1"
+                            <Label Grid.Row="1"
                            Grid.Column="1"
                            Text="{Binding Class}"
                            FontAttributes="Italic" 
                            VerticalTextAlignment="Center"/>
-                    </Grid>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <HorizontalStackLayout>
             <Button Grid.Column="1" Text="&lt;" Command="{Binding PrevPageAction}"

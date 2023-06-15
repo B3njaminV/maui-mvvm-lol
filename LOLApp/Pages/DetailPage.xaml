@@ -28,6 +28,16 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Label Text="Compétences" FontSize="28" Padding="0,10,0,0"/>
+                <CollectionView ItemsSource="{Binding Skills}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Center" />
+                                <Label Text="{Binding Description}" HorizontalOptions="Center" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

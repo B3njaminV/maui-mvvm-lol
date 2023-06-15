@@ -1,4 +1,5 @@
 using ViewModel;
+using ViewModelApp;
 
 namespace LOLApp.Pages;
 
@@ -13,7 +14,7 @@ public partial class DetailPage : ContentPage
         BindingContext = ChampionVM;
     }
 
-    private async void ToolbarItem_Clicked(object sender, EventArgs e)
+    public async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new EditPage(ChampionVM));
     }
