@@ -15,7 +15,11 @@ public partial class EditPage : ContentPage
         ChampionVM = championVM;
         EditPageVM = new EditPageVM(ChampionVM);
         InitializeComponent();
-        BindingContext = ChampionVM;
+        BindingContext = EditPageVM;
     }
 
+    private void ToolbarItem_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

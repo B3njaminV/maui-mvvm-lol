@@ -4,10 +4,14 @@
              x:Class="LOLApp.Pages.EditPage"
              Title="EditPage"
              x:Name="root">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Valider" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout>
-        <Label 
-            Text="{Binding Title, Source={x:Reference root}}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid RowDefinitions="Auto, Auto, Auto"
+              Padding="10,10,10,0">
+            <Entry Text="{Binding ChampionVM.Name}" Grid.Row="0"/>
+            <Editor Text="{Binding ChampionVM.Bio}" Grid.Row="1" />
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -95,7 +95,7 @@ namespace ViewModel
         private async Task LoadChampions()
         {
 			_champions.Clear();
-            IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(Index, Count);
+            IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(0, 5);
             
             foreach (var champion in modelChampions)
             {
