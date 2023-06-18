@@ -1,21 +1,16 @@
+using LOLApp.ViewModelApp;
 using ViewModel;
-using ViewModelApp;
 
 namespace LOLApp.Pages;
 
 public partial class DetailPage : ContentPage
 {
-    public ChampionVM ChampionVM;
+    public DetailPageVM DetailPageVM;
 
     public DetailPage(ChampionVM championVM)
     {
-        ChampionVM = championVM;
+        DetailPageVM = new DetailPageVM(championVM, Navigation);
         InitializeComponent();
-        BindingContext = ChampionVM;
-    }
-
-    public async void ToolbarItem_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new EditPage(ChampionVM));
-    }
+        BindingContext = DetailPageVM;
+    }  
 }

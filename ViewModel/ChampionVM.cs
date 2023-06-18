@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
+using Microsoft.Maui.Controls;
 using Model;
 
 namespace ViewModel;
@@ -8,11 +10,9 @@ namespace ViewModel;
 public class ChampionVM : PropertyChange
 {
 
-    private Dictionary<string, int> _characteristic = new Dictionary<string, int>();
-    public ObservableCollection<KeyValuePair<string, int>> Characteristic { get; set; }
-
-    private ObservableCollection<SkillVM> _skills = new ObservableCollection<SkillVM>();
-
+    private ObservableCollection<CharacteristicVM> _characteristics { get; set; } = new ObservableCollection<CharacteristicVM>();
+    public ObservableCollection<CharacteristicVM> Characteristics { get; private set; }
+    private ObservableCollection<SkillVM> _skills { get; set; } = new ObservableCollection<SkillVM>();
     public ObservableCollection<SkillVM> Skills { get; private set; }
 
     public ChampionVM(Champion model)
@@ -23,7 +23,7 @@ public class ChampionVM : PropertyChange
     public ChampionVM()
     {
         _model = new Champion("Heros", ChampionClass.Assassin);
-        Characteristic = new ObservableCollection<KeyValuePair<string, int>>(_characteristic);
+        Characteristics = new ObservableCollection<CharacteristicVM>(_characteristics);
         Skills = new ObservableCollection<SkillVM>(_skills);
         LoadCharacteristic();
         LoadSkill();
@@ -84,11 +84,12 @@ public class ChampionVM : PropertyChange
 
     private async Task LoadCharacteristic()
     {
-        _characteristic.Clear();
+        _characteristics.Clear();
         foreach (var item in _model.Characteristics)
         {
-            Characteristic.Add(item);
+            Characteristics.Add(new CharacteristicVM { Key = item.Key, Value = item.Value });
         }
+        OnPropertyChanged(nameof(Characteristics));
     }
 
     private async Task LoadSkill()
@@ -98,6 +99,18 @@ public class ChampionVM : PropertyChange
         {
             _skills.Add(new SkillVM(item));
         }
+    }
+
+    public void AddCharacteristic(Tuple<string, int> characteristic)
+    {
+        Model.AddCharacteristics(characteristic);
+        LoadCharacteristic();
+    }
+
+    public void AddSkill(string name)
+    {
+        Model.AddSkill(new Skill(name, SkillType.Unknown, "Une simple description"));
+        LoadSkill();
     }
 }
 

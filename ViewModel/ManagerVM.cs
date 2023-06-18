@@ -33,7 +33,7 @@ namespace ViewModel
 		{
             DataManager = dataManager;
 			Champions = new ReadOnlyObservableCollection<ChampionVM>(_champions);
-			PropertyChanged += ManagerVM_PropertyChanged;
+            PropertyChanged += ManagerVM_PropertyChanged;
 
             LoadChampionsCommand = new Command(
                 execute: async () => await LoadChampions(),
@@ -42,12 +42,12 @@ namespace ViewModel
 
             NextPageCommand = new Command(
                 execute: NextPageAction,
-                canExecute: () => DataManager != null 
+                canExecute: () => CanNextPage()
                 );
 
             PreviousPageCommand = new Command(
                 execute: PreviousPageAction,
-                canExecute: () => DataManager != null
+                canExecute: () => CanPreviousPage()
                 );
 
         }
@@ -66,6 +66,7 @@ namespace ViewModel
 
         }
         private int index = 1;
+
         public int Count
         {
             get => count;
@@ -74,28 +75,29 @@ namespace ViewModel
                 if (count == value) return;
                 count = value;
                 OnPropertyChanged();
-                (NextPageCommand as Command)?.ChangeCanExecute();
-                (PreviousPageCommand as Command)?.ChangeCanExecute();
             }
         }
-        private int count = 5;
+        private int count;
+
+        public int NbParPage { get; set; } = 5;
 
         private void NextPageAction()
         {
-            Index += 1;
-            LoadChampionsCommand.Execute(null);
+            Index++;
+            LoadChampions();
         }
 
         private void PreviousPageAction()
         {
-            Index = Math.Max(1, Index - 1);
-            LoadChampionsCommand.Execute(null);
+            Index--;
+            LoadChampions();
         }
 
         private async Task LoadChampions()
         {
 			_champions.Clear();
-            IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(0, 5);
+            Count = await DataManager.ChampionsMgr.GetNbItems();
+            IEnumerable<Champion> modelChampions = await DataManager.ChampionsMgr.GetItems(Index - 1, NbParPage);
             
             foreach (var champion in modelChampions)
             {
@@ -111,6 +113,16 @@ namespace ViewModel
             {
                 await LoadChampions();
             }
+        }
+
+        private bool CanNextPage()
+        {
+            return Count - (NbParPage * (Index - 1)) > NbParPage;
+        }
+
+        private bool CanPreviousPage()
+        {
+            return Index > 1;
         }
 
     }

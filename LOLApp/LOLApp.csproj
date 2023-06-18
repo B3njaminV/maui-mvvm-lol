@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
@@ -75,7 +76,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\..\Documents\Mes Applications\maui-mvvm-lol\ViewModel\ViewModel.csproj" />
 	  <ProjectReference Include="..\StubLib\StubLib.csproj" />
-	  <ProjectReference Include="..\ViewModelApp\ViewModelApp.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\.DS_Store" />

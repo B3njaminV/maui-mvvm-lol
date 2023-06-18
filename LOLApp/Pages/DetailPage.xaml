@@ -8,16 +8,16 @@
         <converters:Base64ToImage x:Key="Base64ToImg"/>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Modifier" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Modifier" Command="{Binding ModifyCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout>
-            <Image Source="{Binding Path=Image, Converter={StaticResource Base64ToImg}}"/>
+            <Image Source="{Binding Path=ChampionVM.Image, Converter={StaticResource Base64ToImg}}"/>
             <VerticalStackLayout Padding="10">
-                <Label Text="{Binding Name}" FontSize="28"/>
-                <Label Text="{Binding Bio}"/>
+                <Label Text="{Binding ChampionVM.Name}" FontSize="28"/>
+                <Label Text="{Binding ChampionVM.Bio}"/>
                 <Label Text="Caractéristiques" FontSize="28" Padding="0,10,0,0"/>
-                <CollectionView ItemsSource="{Binding Characteristic}">
+                <CollectionView ItemsSource="{Binding ChampionVM.Characteristic}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -28,7 +28,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Label Text="Compétences" FontSize="28" Padding="0,10,0,0"/>
-                <CollectionView ItemsSource="{Binding Skills}">
+                <CollectionView ItemsSource="{Binding ChampionVM.Skills}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
