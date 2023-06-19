@@ -74,8 +74,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\..\Documents\Mes Applications\maui-mvvm-lol\ViewModel\ViewModel.csproj" />
 	  <ProjectReference Include="..\StubLib\StubLib.csproj" />
+	  <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\.DS_Store" />
