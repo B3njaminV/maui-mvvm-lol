@@ -25,9 +25,11 @@
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem Text="Delete"
-                                               BackgroundColor="Red"/>
+                                               BackgroundColor="Red"
+                                               Command="{Binding DeleteChampionCommand}"/>
                                     <SwipeItem Text="Edit"
-                                               BackgroundColor="Green"/>
+                                               BackgroundColor="Green"
+                                               Command="{Binding SelectChampionCommand}"/>
                                 </SwipeItems>
                             </SwipeView.RightItems>
 

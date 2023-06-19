@@ -9,6 +9,7 @@ namespace LOLApp.ViewModelApp
 
         public INavigation Navigation { get; set; }
         public ICommand SelectChampionCommand { get; private set; }
+        public ICommand DeleteChampionCommand { get; private set; }
 
         public ManagerVM ManagerVM { get; set; }   
 
@@ -18,6 +19,11 @@ namespace LOLApp.ViewModelApp
             Navigation = navigation;
 
             SelectChampionCommand = new Command<ChampionVM>(
+                execute: async (selectedChampion) => await SelectChampion(selectedChampion),
+                canExecute: selectedChampion => ManagerVM is not null && selectedChampion is not null
+            );
+
+            DeleteChampionCommand = new Command<ChampionVM>(
                 execute: async (selectedChampion) => await SelectChampion(selectedChampion),
                 canExecute: selectedChampion => ManagerVM is not null && selectedChampion is not null
             );
